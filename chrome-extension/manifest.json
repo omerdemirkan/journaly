@@ -1,13 +1,13 @@
 {
     "manifest_version": 2,
-    "name": "My First Extension",
+    "name": "IJDB",
     "version": "0.1.0",
     "content_scripts": [
         {
             "matches": [
                 "<all_urls>"
             ],
-            "js": ["script.js"]
+            "js": ["scrape.js"]
         }
     ]
 }
