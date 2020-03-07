@@ -1,4 +1,3 @@
-
 const anchorList = [];
 
 function searchText(element) {
