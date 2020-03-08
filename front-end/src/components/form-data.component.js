@@ -8,13 +8,13 @@ export default class FormDataComponent extends Component {
         super(props);
 
         this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangepatreonLink = this.onChangepatreonLink.bind(this);
         this.onChangeEmployer = this.onChangeEmployer.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             name: '',
-            email: '',
+            patreonLink: '',
             employer: ''
         }
     }
@@ -24,8 +24,8 @@ export default class FormDataComponent extends Component {
         this.setState({ name: e.target.value })
     }
 
-    onChangeEmail(e) {
-        this.setState({ email: e.target.value })
+    onChangepatreonLink(e) {
+        this.setState({ patreonLink: e.target.value })
     }
 
     onChangeEmployer(e) {
@@ -40,13 +40,13 @@ export default class FormDataComponent extends Component {
         if (localStorage.getItem('user')) {
             this.setState({
                 name: this.userData.name,
-                email: this.userData.email,
+                patreonLink: this.userData.patreonLink,
                 employer: this.userData.employer
             })
         } else {
             this.setState({
                 name: '',
-                email: '',
+                patreonLink: '',
                 employer: ''
             })
         }
@@ -62,7 +62,7 @@ export default class FormDataComponent extends Component {
         axios.post('/journalist',  {
             journalist: {
             name: this.state.name,
-            email: this.state.email,
+            patreonLink: this.state.patreonLink,
             employer: this.state.employer
           }
           })
@@ -85,8 +85,8 @@ export default class FormDataComponent extends Component {
                         <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} />
                     </div>
                     <div className="form-group">
-                        <label>Email</label>
-                        <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} />
+                        <label>Patreon Link</label>
+                        <input type="text" className="form-control" value={this.state.patreonLink} onChange={this.onChangepatreonLink} />
                     </div>
                     <div className="form-group">
                         <label>Current Employer</label>
