@@ -2,8 +2,8 @@ const anchorList = [];
 
 // Styling
 const sidebarStyle = {
-    closed: "width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transform: translate(-340px); height: 60px; transition: 0.3s;",
-    open: "width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transition: 0.3 ease; transition: 0.3s;"
+    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transform: translate(-340px); height: 60px; transition: 0.3s;",
+    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transition: 0.3 ease; transition: 0.3s;"
 };
 
 function searchText(element) {
@@ -40,8 +40,12 @@ if (anchorList.length > 0) {
 }
 
 function display(info) {
-
     let sideDrawerOpen = false;
+
+    const fontLinkElement = document.createElement('link');
+    fontLinkElement.href = "https://fonts.googleapis.com/css?family=Montserrat&display=swap";
+    fontLinkElement.rel = 'stylesheet';
+    document.head.appendChild(fontLinkElement);
 
     const sideDrawerElement = document.createElement("div");
     sideDrawerElement.setAttribute("style", sidebarStyle.closed);
