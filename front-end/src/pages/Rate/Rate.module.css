@@ -31,8 +31,12 @@
 
 .RecentReviewsBox {
     padding: 50px 0;
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
 }
 
 .Header {
     text-align: center;
+    margin-bottom: 30px;
 }

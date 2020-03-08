@@ -1,0 +1,25 @@
+.Review {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin: 5px 0;
+    position: relative;
+    top: 10px;
+    opacity: 0;
+    animation: PhaseIn 0.4s ease forwards;
+}
+
+.Review p {
+    margin: 0;
+}
+
+@keyframes PhaseIn {
+    from {
+        top: 10px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}

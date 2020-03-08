@@ -3,6 +3,7 @@ import classes from './Rate.module.css';
 import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
+import Review from '../../components/Review/Review';
 
 import axios from '../../axios';
 
@@ -28,6 +29,7 @@ export default function Rate(props) {
         axios.get('/journalist/' + journalistId)
         .then(res => {
             if (ratedJournalists && ratedJournalists.includes(res.data._id)) {
+                setJournalist(res.data)
                 setSubmitted(true);
             } else {
                 setJournalist(res.data)
@@ -47,7 +49,10 @@ export default function Rate(props) {
         .then(res => {
             const newRatedJournalists = [...ratedJournalists, res.data];
             localStorage.setItem('ratedJournalists', JSON.stringify(newRatedJournalists));
+            const newJournalist = {...journalist};
+            newJournalist.userReviews.push(review)
             setSubmitted(true);
+            setJournalist(newJournalist);
         })
         .catch(err => {
             console.log(err);
@@ -60,6 +65,7 @@ export default function Rate(props) {
         return null;
     }
 
+    let delay = 0;
 
     return <div className={classes.Rate}>
         {!submitted ?
@@ -101,14 +107,20 @@ export default function Rate(props) {
         : 
         <>
             <h1 className={classes.Header}>Thanks for your review!</h1>
-            
+            <div className={classes.RecentReviewsBox}>
+                <h2 className={classes.Header}>Recent Reviews</h2>
+                {journalist.userReviews.map(review => {
+                    if (review.length > 0) {
+                        delay += .1;
+                        return <Review review={review} delay={delay + 's'}/>
+                    }
+                    return null;
+                })}
+            </div>
         </>
         }
 
-        {/* <div className={classes.RecentReviewsBox}>
-            <h2 className={classes.Header}>Recent Reviews</h2>
-            
-        </div> */}
+        
         
     </div>
 }
