@@ -1,5 +1,11 @@
 const anchorList = [];
 
+// Styling
+const sidebarStyle = {
+    closed: "width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transform: translate(-340px); height: 60px; transition: 0.3s;",
+    open: "width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transition: 0.3 ease; transition: 0.3s;"
+};
+
 function searchText(element) {
     if (element.tagName === 'A') {
         if (element.innerText.match(/^[a-zA-Z ]+$/)) {
@@ -34,8 +40,11 @@ if (anchorList.length > 0) {
 }
 
 function display(info) {
-    const wrapperDiv = document.createElement("div");
-    wrapperDiv.setAttribute("style","width: 400px; height: 400px; position: fixed; top: 300px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25);");
+
+    let sideDrawerOpen = false;
+
+    const sideDrawerElement = document.createElement("div");
+    sideDrawerElement.setAttribute("style", sidebarStyle.closed);
 
     // Header Div
     const headerDiv = document.createElement("div");
@@ -43,13 +52,30 @@ function display(info) {
 
     const journalistNameElement = document.createElement('h1');
     journalistNameElement.innerText = info.name;
-    headerDiv.appendChild(journalistNameElement)
+    headerDiv.appendChild(journalistNameElement);
     
     const journalistEmployerElement = document.createElement('h3');
     journalistEmployerElement.innerText = info.employer;
     headerDiv.appendChild(journalistEmployerElement);
 
-    wrapperDiv.appendChild(headerDiv);
+    const closeIconElement = document.createElement('img');
+    closeIconElement.src = chrome.extension.getURL('images/open.png');
+    closeIconElement.setAttribute('style', "position: absolute; top: 20px; right: 20px; width: 20px; height: 20px; color: white; cursor: pointer");
+    closeIconElement.addEventListener('click', function() {
+        if (sideDrawerOpen) {
+            closeIconElement.src = chrome.extension.getURL('images/open.png');
+            sideDrawerElement.setAttribute("style", sidebarStyle.closed);
+
+            sideDrawerOpen = false;
+        } else {
+            closeIconElement.src = chrome.extension.getURL('images/close.png');
+            sideDrawerElement.setAttribute("style", sidebarStyle.open);
+            sideDrawerOpen = true;
+        }
+    });
+    headerDiv.appendChild(closeIconElement);
+
+    sideDrawerElement.appendChild(headerDiv);
 
     
     // Main Div
@@ -70,8 +96,8 @@ function display(info) {
     journalistScoreElement.innerText = journalistScore;
     mainDiv.appendChild(journalistScoreElement);
 
-    wrapperDiv.appendChild(mainDiv);
+    sideDrawerElement.appendChild(mainDiv);
 
-    document.body.appendChild(wrapperDiv);
+    document.body.appendChild(sideDrawerElement);
 
 }
