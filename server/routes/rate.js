@@ -8,16 +8,16 @@ router.post('/:id', (req, res) => {
     const userRating = req.body.rating;
     const userReview = req.body.review;
 
-    Journalist.findById(journalistId, (err, journalist) => {
-        if (err) return res.status(400);
+    Journalist.findById(journalistId, (error, journalist) => {
+        if (error) return res.status(400);
 
         journalist.userRatings.push(userRating);
-        journalist.userReviews = journalist.userReviews ? journalist.userReviews.concat([userReview]) : [userReview]
+        journalist.userReviews = journalist.userReviews.concat([userReview]);
 
-        journalist.save((err) => {
+        journalist.save((err, savedJournalist) => {
             if (err) return res.status(400);
 
-            res.json('User successfully saved');
+            res.json(savedJournalist._id);
         });
     });
 });

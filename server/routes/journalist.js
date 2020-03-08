@@ -4,7 +4,6 @@ const Journalist = require('../models/journalist');
 
 router.post('/', (req, res) => {
     const journalist = req.body.journalist;
-
     const newJournalist = new Journalist(journalist);
 
     newJournalist.save(err => {
@@ -33,7 +32,6 @@ router.get('/', (req, res) => {
             res.json(foundJournalist);
         });
     }
-    
 });
 
 router.get('/:id', (req, res) => {

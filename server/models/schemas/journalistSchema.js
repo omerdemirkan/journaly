@@ -7,7 +7,11 @@ const mongooseSchema = new mongoose.Schema({
     articlesPublished: Number,
     userRatings: [Number],
     majorPublishingHouses: [String],
-    imageUrl: String
+    imageUrl: String,
+    userReviews: {
+        type: Array,
+        default: []
+    }
 });
 
 module.exports = mongooseSchema;
