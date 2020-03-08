@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import classes from './Rate.module.css';
-import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import Button from '@material-ui/core/Button';
 import Review from '../../components/Review/Review';
 import Rating from '@material-ui/lab/Rating';
+import Dark from '../../hoc/Dark';
 
 import axios from '../../axios';
 
@@ -77,9 +76,9 @@ export default function Rate(props) {
         {!submitted ?
             <>
                 <div className={classes.DescriptionBox}>
-                    <h1>{journalist.name}</h1>
+                    <h1 style={{color: '#007bff'}}>{journalist.name}</h1>
                     <p>{journalist.employer}</p>
-                    <h3>Rating: {journalistScore}</h3>
+                    <h3>Rating: {journalistScore.toFixed(1)}</h3>
                     <h3>Submissions: {numSubmissions}</h3>
                 </div>
                 
@@ -99,22 +98,7 @@ export default function Rate(props) {
                                 setRating(newRating)
                             }
                         }}/>
-                        {/* <TextField
-                        className={classes.RatingField}
-                        id="outlined-number"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        value={rating}
-                        onChange={event => {
-                            const newRating = event.target.value;
-                            if (newRating <= 10 && newRating >= 0) {
-                                setRating(newRating)
-                            }
-                        }}
-                        variant="outlined"
-                        /> */}
+                        
                     </div>
 
                     <div className={classes.InputBox}>
@@ -127,7 +111,7 @@ export default function Rate(props) {
                     <button 
                     onClick={postRatingHandler}
                     disabled={rating == null}
-                    className={classes.SubmitButton}>Submit</button>
+                    className="btn btn-primary btn-block">Submit</button>
                 </div>
             </>
         : 
