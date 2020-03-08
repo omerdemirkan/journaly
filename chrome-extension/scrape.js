@@ -2,8 +2,8 @@ const anchorList = [];
 
 // Styling
 const sidebarStyle = {
-    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(-340px); transition: 0.3s;",
-    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 220px; position: fixed; top: 150px; left: 0; background-color: #484848; color: white; border-top-right-radius: 4rem; border-bottom-right-radius: 4rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
+    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(-340px); transition: 0.3s; overflow: hidden;",
+    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 220px; position: fixed; top: 150px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s; overflow: hidden;"
 };
 
 const ratingSidebarStyle = {
@@ -126,7 +126,7 @@ function display(info) {
 
 
     const seeMoreBtn = document.createElement("a")
-    seeMoreBtn.innerText =  "See Score Breakdown"
+    seeMoreBtn.innerText =  "More Info"
     seeMoreBtn.setAttribute('style', "text-align:center; color:white;background-color:#333333;width:60%;padding:15px 5px;margin-top:20px; border:none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); transition: all 0.3s cubic-bezier(.25,.8,.25,1);");
     seeMoreBtn.href = "http://localhost:3000/rate/" + info._id
     seeMoreBtn.target = '_blank'

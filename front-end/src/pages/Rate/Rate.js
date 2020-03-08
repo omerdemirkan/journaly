@@ -65,7 +65,7 @@ export default function Rate(props) {
         return null;
     }
 
-    let delay = 0;
+    let delay = 0.2;
 
     return <div className={classes.Rate}>
         {!submitted ?
