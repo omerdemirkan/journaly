@@ -43,7 +43,7 @@ function display(info) {
     let sideDrawerOpen = false;
 
     const fontLinkElement = document.createElement('link');
-    fontLinkElement.href = "https://fonts.googleapis.com/css?family=Montserrat&display=swap";
+    fontLinkElement.href = "https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap";
     fontLinkElement.rel = 'stylesheet';
     document.head.appendChild(fontLinkElement);
 
@@ -60,24 +60,25 @@ function display(info) {
     
     const journalistEmployerElement = document.createElement('h3');
     journalistEmployerElement.innerText = info.employer;
+    journalistEmployerElement.setAttribute('style', 'font-weight: 300;');
     headerDiv.appendChild(journalistEmployerElement);
 
-    const closeIconElement = document.createElement('img');
-    closeIconElement.src = chrome.extension.getURL('images/open.png');
-    closeIconElement.setAttribute('style', "position: absolute; top: 20px; right: 20px; width: 20px; height: 20px; color: white; cursor: pointer");
-    closeIconElement.addEventListener('click', function() {
+    const toggleIconElement = document.createElement('img');
+    toggleIconElement.src = chrome.extension.getURL('images/open.png');
+    toggleIconElement.setAttribute('style', "position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer");
+    toggleIconElement.addEventListener('click', function() {
         if (sideDrawerOpen) {
-            closeIconElement.src = chrome.extension.getURL('images/open.png');
+            toggleIconElement.src = chrome.extension.getURL('images/open.png');
             sideDrawerElement.setAttribute("style", sidebarStyle.closed);
 
             sideDrawerOpen = false;
         } else {
-            closeIconElement.src = chrome.extension.getURL('images/close.png');
+            toggleIconElement.src = chrome.extension.getURL('images/close.png');
             sideDrawerElement.setAttribute("style", sidebarStyle.open);
             sideDrawerOpen = true;
         }
     });
-    headerDiv.appendChild(closeIconElement);
+    headerDiv.appendChild(toggleIconElement);
 
     sideDrawerElement.appendChild(headerDiv);
 
