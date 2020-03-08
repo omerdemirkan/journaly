@@ -2,9 +2,14 @@ const anchorList = [];
 
 // Styling
 const sidebarStyle = {
-    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transform: translate(-340px); transition: 0.3s;",
-    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transition: 0.3 ease; transition: 0.3s;"
+    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(-340px); transition: 0.3s;",
+    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
 };
+
+const ratingSidebarStyle = {
+    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(340px); transition: 0.3s;",
+    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
+}
 
 const sidebarHeaderStyle = {
     closed: "padding: 15px;",
@@ -120,4 +125,6 @@ function display(info) {
 
     document.body.appendChild(sideDrawerElement);
 
+
+    
 }
