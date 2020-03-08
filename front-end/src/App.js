@@ -8,12 +8,14 @@ import {Route} from 'react-router-dom';
 
 import SignUp from './pages/SignUp/SignUp';
 import Rate from './pages/Rate/Rate';
+import FormDataComponent from './components/form-data.component';
 
 function App() {
   return (
     <div className="App">
-      <Route path='/sign-up'/>
+      <Route path='/sign-up'component={SignUp}/>
       <Route path='/rate/:journalistId'/>
+      <FormDataComponent />
     </div>
   );
 }

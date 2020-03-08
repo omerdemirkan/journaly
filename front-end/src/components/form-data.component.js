@@ -1,12 +1,3 @@
-import React from 'react'
-
-export default function SignUp() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
 import React, { Component } from 'react';
 
 export default class FormDataComponent extends Component {
@@ -17,13 +8,13 @@ export default class FormDataComponent extends Component {
 
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeEmployer = this.onChangeEmployer.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             name: '',
             email: '',
-            employer: ''
+            phone: ''
         }
     }
 
@@ -36,8 +27,8 @@ export default class FormDataComponent extends Component {
         this.setState({ email: e.target.value })
     }
 
-    onChangeEmployer(e) {
-        this.setState({ employer: e.target.value })
+    onChangePhone(e) {
+        this.setState({ phone: e.target.value })
     }
 
 
@@ -49,13 +40,13 @@ export default class FormDataComponent extends Component {
             this.setState({
                 name: this.userData.name,
                 email: this.userData.email,
-                employer: this.userData.employer
+                phone: this.userData.phone
             })
         } else {
             this.setState({
                 name: '',
                 email: '',
-                employer: ''
+                phone: ''
             })
         }
     }
@@ -83,8 +74,8 @@ export default class FormDataComponent extends Component {
                         <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} />
                     </div>
                     <div className="form-group">
-                        <label>Current Employer</label>
-                        <input type="text" className="form-control" value={this.state.employer} onChange={this.onChangeEmployer} />
+                        <label>Phone</label>
+                        <input type="tel" className="form-control" value={this.state.phone} onChange={this.onChangePhone} />
                     </div>
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </form>
