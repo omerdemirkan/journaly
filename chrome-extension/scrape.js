@@ -120,7 +120,7 @@ function display(info) {
     console.log(info.userRatings);
 
     const journalistScoreElement = document.createElement('h1');
-    journalistScoreElement.innerText = journalistScore;
+    journalistScoreElement.innerText = journalistScore.toFixed(1);
     mainDiv.appendChild(journalistScoreElement);
 
 
