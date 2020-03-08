@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import withSplashScreen from './hoc/withSplashScreen/withSplashScreen';
 
 import Navbar from './components/Navbar/Navbar';
 
@@ -22,4 +23,4 @@ function App() {
   </>
 }
 
-export default App;
+export default withSplashScreen(App);

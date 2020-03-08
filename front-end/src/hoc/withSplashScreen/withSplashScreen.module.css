@@ -1,0 +1,42 @@
+.SplashScreen {
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: FadeOut .5s ease forwards;
+    animation-delay: 1.25s;
+}
+
+.Logo {
+    width: 300px;
+    position: relative;
+    bottom: 50px;
+    opacity: inherit;
+    animation: FadeOut .5s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes FadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes Delete {
+    from {
+        display: inline-block;
+    }
+    to {
+        display: none;
+    }
+}
