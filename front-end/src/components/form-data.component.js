@@ -35,18 +35,13 @@ export default class FormDataComponent extends Component {
 
     // React Life Cycle
     componentDidMount() {
-        this.userData = JSON.parse(localStorage.getItem('user'));
 
         if (localStorage.getItem('signedUp') === 'true') {
             this.setState({
                 signedUp: true
             });
         }
-        this.setState({
-            name: this.userData.name,
-            patreonLink: this.userData.patreonLink,
-            employer: this.userData.employer
-        })
+        
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -65,6 +60,7 @@ export default class FormDataComponent extends Component {
         })
         .then(res => {
             localStorage.setItem('signedUp', 'true');
+            this.setState({signedUp: true});
             console.log(res.data);
         })
         .catch(err => {
@@ -74,25 +70,33 @@ export default class FormDataComponent extends Component {
 
 
     render() {
-        console.log(this.state.patreonLink);
         return (
             <div className="container">
-                <h1 style={{textAlign: 'center', margin: '80px 0'}}>Sign Up</h1>
-                <form onSubmit={this.onSubmit} style={{maxWidth: '400px', margin: 'auto'}}>
-                    <div className="form-group">
-                        <label>Full Name</label>
-                        <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} />
-                    </div>
-                    <div className="form-group">
-                        <label>Patreon Link</label>
-                        <input type="text" className="form-control" value={this.state.patreonLink} onChange={this.onChangePatreonLink} />
-                    </div>
-                    <div className="form-group">
-                        <label>Current Employer</label>
-                        <input type="text" className="form-control" value={this.state.employer} onChange={this.onChangeEmployer} />
-                    </div>
-                    <button type="submit" className="btn btn-primary btn-block" disabled={this.state.name.length < 4 ||this.state.employer.length < 4}>Submit</button>
-                </form>
+                {!this.state.signedUp ?
+                    <>
+                        <h1 style={{textAlign: 'center', margin: '80px 0'}}>Sign Up</h1>
+                        <form onSubmit={this.onSubmit} style={{maxWidth: '400px', margin: 'auto'}}>
+                            <div className="form-group">
+                                <label>Full Name</label>
+                                <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} />
+                            </div>
+                            <div className="form-group">
+                                <label>Patreon Link</label>
+                                <input type="text" className="form-control" value={this.state.patreonLink} onChange={this.onChangePatreonLink} />
+                            </div>
+                            <div className="form-group">
+                                <label>Current Employer</label>
+                                <input type="text" className="form-control" value={this.state.employer} onChange={this.onChangeEmployer} />
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block" disabled={this.state.name.length < 4 ||this.state.employer.length < 4}>Submit</button>
+                        </form>
+                    </>
+                : 
+                    <>
+                        <h1 style={{textAlign: 'center', margin: '80px 0'}}>Youre In!</h1>
+                        <p style={{textAlign: 'center'}}>Welcome to a new form of journalism</p>
+                    </>
+                }
             </div>
         )
     }

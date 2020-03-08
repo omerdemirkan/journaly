@@ -86,12 +86,12 @@ export default function Rate(props) {
                 <div className={classes.RateBox}>
                     <h3 className={classes.Header}>Rate Me!</h3>
                     <div className={classes.InputBox}>
-                        <p>Rating</p>
                         <Rating 
                         name="customized-10" 
                         defaultValue={8} 
                         max={10} 
                         value={rating}
+                        style={{margin: 'auto'}}
                         onChange={event => {
                             const newRating = event.target.value;
                             if (newRating <= 10 && newRating >= 0) {

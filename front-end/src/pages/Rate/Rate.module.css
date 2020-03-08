@@ -26,9 +26,18 @@
     padding-top: 50px;
 }
 
+.RateBox h3 {
+    margin-bottom: 20px;
+}
+
+.RateBox p {
+    text-align: start;
+}
+
 .InputBox {
     margin: auto;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .RatingField {
