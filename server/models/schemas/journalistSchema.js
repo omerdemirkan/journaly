@@ -5,7 +5,10 @@ const mongooseSchema = new mongoose.Schema({
     employer: String,
     politicalLeaning: String,
     articlesPublished: Number,
-    userRatings: [Number],
+    userRatings: {
+        type: [Number],
+        default: []
+    },
     majorPublishingHouses: [String],
     imageUrl: String,
     userReviews: {

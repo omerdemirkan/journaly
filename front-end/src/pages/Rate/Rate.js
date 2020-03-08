@@ -66,9 +66,14 @@ export default function Rate(props) {
     }
 
     const numSubmissions = journalist.userRatings.length;
-    const journalistScore = journalist.userRatings.reduce((cumulator, rating) => {
-        return cumulator + rating;
-    }) / numSubmissions;
+    if (journalist.userRatings.length !== 0) {
+        var journalistScore = journalist.userRatings.reduce((cumulator, rating) => {
+            return cumulator + rating;
+        }) / numSubmissions;
+    } else {
+        journalistScore = 0;
+    }
+    
 
     let delay = 0.2;
 
@@ -118,7 +123,7 @@ export default function Rate(props) {
         <>
             <h1 className={classes.Header}>Thanks for your review!</h1>
             <div className={classes.RecentReviewsBox}>
-                <h2 className={classes.Header}>Recent Reviews</h2>
+                <h2 className={classes.Header} style={{marginBottom: '20px'}}>Recent Reviews</h2>
                 {journalist.userReviews.map(review => {
                     if (review.length > 0) {
                         delay += .1;

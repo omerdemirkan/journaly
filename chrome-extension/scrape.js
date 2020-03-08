@@ -3,13 +3,8 @@ const anchorList = [];
 // Styling
 const sidebarStyle = {
     closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(-340px); transition: 0.3s; overflow: hidden;",
-    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 220px; position: fixed; top: 150px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s; overflow: hidden;"
+    open: "font-family: 'Montserrat', sans-serif; width: 350px; height: 330px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s; overflow: hidden;"
 };
-
-const ratingSidebarStyle = {
-    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(340px); transition: 0.3s;",
-    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; text-align:center; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
-}
 
 const sidebarHeaderStyle = {
     closed: "padding: 15px;",
@@ -17,8 +12,8 @@ const sidebarHeaderStyle = {
 }
 
 const toggleIconStyle = {
-    closed: "position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;",
-    open: "position: absolute; top: 15px; right: 25px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;"
+    closed: "position: absolute; top: 20px; right: 20px; width: 20px; height: 20px; color: white; cursor: pointer; transition: 0.3s ease;",
+    open: "position: absolute; top: 20px; right: 20px; width: 20px; height: 20px; color: white; cursor: pointer; transition: 0.3s ease;"
 }
 
 function searchText(element) {
@@ -113,14 +108,20 @@ function display(info) {
 
     mainDiv.appendChild(journalistScoreDescriptionElement);
 
-    const journalistScore = info.userRatings.reduce((cumulator, rating) => {
-        return cumulator + rating;
-    }) / info.userRatings.length;
+    if (info.userRatings && info.userRatings.length > 0) {
+        var journalistScore = info.userRatings.reduce((cumulator, rating) => {
+            return cumulator + rating;
+        }) / info.userRatings.length;
+    } else {
+        var journalistScore = 0;
+    }
+    
 
     console.log(info.userRatings);
 
     const journalistScoreElement = document.createElement('h1');
     journalistScoreElement.innerText = journalistScore.toFixed(1);
+    journalistScoreElement.setAttribute('style', 'margin: 15px 0; font-size: 3rem;')
     mainDiv.appendChild(journalistScoreElement);
 
 
@@ -131,6 +132,11 @@ function display(info) {
     seeMoreBtn.href = "http://localhost:3000/rate/" + info._id
     seeMoreBtn.target = '_blank'
     mainDiv.appendChild(seeMoreBtn)
+
+    const supportMeButton = document.createElement('p');
+    supportMeButton.innerText = 'Support Me On Patreon';
+    supportMeButton.setAttribute('style', 'text-align: center; margin-top: 20px; font-size: .8rem; cursor: pointer;')
+    mainDiv.appendChild(supportMeButton)
    
 
 

@@ -50,9 +50,16 @@
     min-height: 200px;
     user-select: none;
     font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    border-radius: .5rem;
+}
+
+.TextArea:focus {
+    border-color: #007bff;
 }
 
 .TextArea:active {
+    outline: none;
     border-color: black;
 }
 
