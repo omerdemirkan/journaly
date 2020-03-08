@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from '../axios'
 
 export default class FormDataComponent extends Component {
     userData;
@@ -58,6 +59,19 @@ export default class FormDataComponent extends Component {
     onSubmit=(e)=> {
         e.preventDefault()
         console.log(this.state)
+        axios.post('/journalist',  {
+            journalist: {
+            name: this.state.name,
+            email: this.state.email,
+            employer: this.state.employer
+          }
+          })
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.log(err)
+          });
     }
 
 
