@@ -2,13 +2,23 @@ const anchorList = [];
 
 // Styling
 const sidebarStyle = {
-    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transform: translate(-340px); height: 60px; transition: 0.3s;",
+    closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transform: translate(-340px); transition: 0.3s;",
     open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25); transition: 0.3 ease; transition: 0.3s;"
 };
 
+const sidebarHeaderStyle = {
+    closed: "padding: 15px;",
+    open: "padding: 15px; background-color: #333333"
+}
+
+const toggleIconStyle = {
+    closed: "position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;",
+    open: "position: absolute; top: 25px; right: 25px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;"
+}
+
 function searchText(element) {
     if (element.tagName === 'A') {
-        if (element.innerText.match(/^[a-zA-Z ]+$/)) {
+        if (element.innerText.match(/^[a-zA-Z ]+$/) && element.innerText.split(' ').length <= 3) {
             anchorList.push(element.innerText);
         }
     } else if (element.hasChildNodes()) {
@@ -52,7 +62,7 @@ function display(info) {
 
     // Header Div
     const headerDiv = document.createElement("div");
-    headerDiv.setAttribute('style', "padding: 15px;");
+    headerDiv.setAttribute('style', sidebarHeaderStyle.closed);
 
     const journalistNameElement = document.createElement('h1');
     journalistNameElement.innerText = info.name;
@@ -65,16 +75,21 @@ function display(info) {
 
     const toggleIconElement = document.createElement('img');
     toggleIconElement.src = chrome.extension.getURL('images/open.png');
-    toggleIconElement.setAttribute('style', "position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer");
+    toggleIconElement.setAttribute('style', toggleIconStyle.closed);
     toggleIconElement.addEventListener('click', function() {
         if (sideDrawerOpen) {
             toggleIconElement.src = chrome.extension.getURL('images/open.png');
+            toggleIconElement.setAttribute('style', toggleIconStyle.closed);
             sideDrawerElement.setAttribute("style", sidebarStyle.closed);
+            headerDiv.setAttribute('style', sidebarHeaderStyle.closed);
 
             sideDrawerOpen = false;
         } else {
             toggleIconElement.src = chrome.extension.getURL('images/close.png');
+            toggleIconElement.setAttribute('style', toggleIconStyle.open);
             sideDrawerElement.setAttribute("style", sidebarStyle.open);
+            headerDiv.setAttribute('style', sidebarHeaderStyle.open);
+
             sideDrawerOpen = true;
         }
     });
