@@ -2,10 +2,28 @@
     padding: 100px 5vw;
 }
 
+.DescriptionBox {
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-bottom: 30px;
+    display: inline-block;
+    min-width: 400px;
+}
+
+.DescriptionBox h3 {
+    /* text-align: center; */
+}
+
+.DescriptionBox p {
+    font-size: 1.1rem;
+    margin: 10px 0 30px;
+}
+
 .RateBox {
     width: 90%;
-    max-width: 500px;
+    max-width: 400px;
     margin: auto;
+    padding-top: 50px;
 }
 
 .InputBox {
@@ -30,13 +48,15 @@
 }
 
 .RecentReviewsBox {
-    padding: 50px 0;
+    padding: 50px 0 20px;
     width: 90%;
     max-width: 500px;
     margin: auto;
 }
+.SubmitButton {
+
+}
 
 .Header {
     text-align: center;
-    margin-bottom: 30px;
 }

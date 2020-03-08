@@ -78,9 +78,10 @@ export default class FormDataComponent extends Component {
     render() {
         return (
             <div className="container">
-                <form onSubmit={this.onSubmit}>
+                <h1 style={{textAlign: 'center', margin: '80px 0'}}>Sign Up</h1>
+                <form onSubmit={this.onSubmit} style={{maxWidth: '400px', margin: 'auto'}}>
                     <div className="form-group">
-                        <label>Name</label>
+                        <label>Full Name</label>
                         <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} />
                     </div>
                     <div className="form-group">

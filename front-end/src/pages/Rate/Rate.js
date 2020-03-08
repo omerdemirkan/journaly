@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 import Review from '../../components/Review/Review';
+import Rating from '@material-ui/lab/Rating';
 
 import axios from '../../axios';
 
@@ -65,16 +66,40 @@ export default function Rate(props) {
         return null;
     }
 
+    const numSubmissions = journalist.userRatings.length;
+    const journalistScore = journalist.userRatings.reduce((cumulator, rating) => {
+        return cumulator + rating;
+    }) / numSubmissions;
+
     let delay = 0.2;
 
     return <div className={classes.Rate}>
         {!submitted ?
             <>
-                <h1 className={classes.Header}>Rate {journalist.name}</h1>
+                <div className={classes.DescriptionBox}>
+                    <h1>{journalist.name}</h1>
+                    <p>{journalist.employer}</p>
+                    <h3>Rating: {journalistScore}</h3>
+                    <h3>Submissions: {numSubmissions}</h3>
+                </div>
+                
+                
                 <div className={classes.RateBox}>
+                    <h3 className={classes.Header}>Rate Me!</h3>
                     <div className={classes.InputBox}>
                         <p>Rating</p>
-                        <TextField
+                        <Rating 
+                        name="customized-10" 
+                        defaultValue={8} 
+                        max={10} 
+                        value={rating}
+                        onChange={event => {
+                            const newRating = event.target.value;
+                            if (newRating <= 10 && newRating >= 0) {
+                                setRating(newRating)
+                            }
+                        }}/>
+                        {/* <TextField
                         className={classes.RatingField}
                         id="outlined-number"
                         type="number"
@@ -89,7 +114,7 @@ export default function Rate(props) {
                             }
                         }}
                         variant="outlined"
-                        />
+                        /> */}
                     </div>
 
                     <div className={classes.InputBox}>
@@ -99,9 +124,10 @@ export default function Rate(props) {
                         className={classes.TextArea}
                         onChange={event => {setReview(event.target.value)}}/>
                     </div>
-                    <Button 
+                    <button 
                     onClick={postRatingHandler}
-                    color='primary'>Submit</Button>
+                    disabled={rating == null}
+                    className={classes.SubmitButton}>Submit</button>
                 </div>
             </>
         : 
