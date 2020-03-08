@@ -30,8 +30,6 @@ router.get('/', (req, res) => {
         Journalist.findOne({name: {$in: searchList}}, (err, foundJournalist) => {
             if (err) return res.json(400);
 
-            console.log(foundJournalist);
-
             res.json(foundJournalist);
         });
     }
