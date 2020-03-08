@@ -13,9 +13,9 @@ import FormDataComponent from './components/form-data.component';
 function App() {
   return (
     <div className="App">
-      <Route path='/sign-up'component={SignUp}/>
+      <Route path='/sign-up' component={SignUp}/>
       <Route path='/rate/:journalistId'/>
-      <FormDataComponent />
+     
     </div>
   );
 }
