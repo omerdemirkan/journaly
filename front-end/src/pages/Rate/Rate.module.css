@@ -1,0 +1,33 @@
+.Rate {
+    padding: 100px 5vw;
+}
+
+.RateBox {
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.InputBox {
+    margin: auto;
+}
+
+.RatingField {
+    width: 50%;
+}
+
+.TextArea {
+    width: 100%;
+    resize: none;
+    min-height: 200px;
+    user-select: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.TextArea:active {
+    border-color: black;
+}
+
+.Header {
+    text-align: center;
+}

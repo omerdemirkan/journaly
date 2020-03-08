@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Route path='/sign-up'/>
-      <Route path='/rate/:journalistId'/>
+      <Route path='/rate/:journalistId' component={Rate}/>
     </div>
   );
 }

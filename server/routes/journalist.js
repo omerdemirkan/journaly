@@ -36,4 +36,15 @@ router.get('/', (req, res) => {
     
 });
 
+router.get('/:id', (req, res) => {
+    const journalistId = req.params.id;
+
+    Journalist.findById(journalistId, (err, journalist) => {
+        if (err) return res.status(400);
+
+        res.json(journalist);
+    });
+    
+});
+
 module.exports = router;
