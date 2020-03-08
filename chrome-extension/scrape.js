@@ -35,11 +35,11 @@ if (anchorList.length > 0) {
 
 function display(info) {
     const wrapperDiv = document.createElement("div");
-    wrapperDiv.setAttribute("style","width: 400px; height: 400px; position: fixed; top: 300px; left: 0; background-color: white");
-
+    wrapperDiv.setAttribute("style","width: 400px; height: 400px; position: fixed; top: 300px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.25);");
 
     // Header Div
     const headerDiv = document.createElement("div");
+    headerDiv.setAttribute('style', "padding: 15px;");
 
     const journalistNameElement = document.createElement('h1');
     journalistNameElement.innerText = info.name;
@@ -54,10 +54,10 @@ function display(info) {
     
     // Main Div
     const mainDiv = document.createElement("div");
-    mainDiv.setAttribute('style', "margin-top: 30px;");
+    mainDiv.setAttribute('style', "padding: 15px;");
 
     const journalistScoreDescriptionElement = document.createElement('span');
-    journalistScoreDescriptionElement.innerText = 'Journalist Rating';
+    journalistScoreDescriptionElement.innerText = 'User Rating';
     mainDiv.appendChild(journalistScoreDescriptionElement);
 
     const journalistScore = info.userRatings.reduce((cumulator, rating) => {
