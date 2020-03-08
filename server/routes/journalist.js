@@ -17,13 +17,25 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     const journalistName = req.query.name;
 
-    Journalist.findOne({name: journalistName}, (err, foundJournalist) => {
-        if (err) return res.status(400);
+    if (journalistName) {
+        Journalist.findOne({name: journalistName}, (err, foundJournalist) => {
+            if (err) return res.status(400);
+    
+            if (foundJournalist) {
+                res.json(foundJournalist);
+            }
+        });
+    } else {
+        const searchList = req.header('searchList').split(',');
+        Journalist.findOne({name: {$in: searchList}}, (err, foundJournalist) => {
+            if (err) return res.json(400);
 
-        if (foundJournalist) {
+            console.log(foundJournalist);
+
             res.json(foundJournalist);
-        }
-    });
+        });
+    }
+    
 });
 
 module.exports = router;
