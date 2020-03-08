@@ -16,8 +16,10 @@ mongoose.connect('mongodb+srv://admin-omer:1907Fbfb@cluster0-jgx0j.mongodb.net/i
 });
 
 const journalistRouter = require('./routes/journalist');
+const rateRouter = require('./routes/rate');
 
 app.use('/api/journalist', journalistRouter);
+app.use('/api/rate', rateRouter);
 
 const PORT = process.env.PORT || 5000;
 

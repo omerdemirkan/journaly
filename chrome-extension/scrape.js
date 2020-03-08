@@ -3,12 +3,12 @@ const anchorList = [];
 // Styling
 const sidebarStyle = {
     closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(-340px); transition: 0.3s;",
-    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; left: 0; background-color: #484848; color: white; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
+    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 220px; position: fixed; top: 150px; left: 0; background-color: #484848; color: white; border-top-right-radius: 4rem; border-bottom-right-radius: 4rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
 };
 
 const ratingSidebarStyle = {
     closed: "font-family: 'Montserrat', sans-serif; width: 400px; height: 60px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transform: translate(340px); transition: 0.3s;",
-    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
+    open: "font-family: 'Montserrat', sans-serif; width: 400px; height: 400px; position: fixed; top: 200px; right: 0; background-color: #484848; color: white; border-top-left-radius: 1rem; text-align:center; border-bottom-left-radius: 1rem; z-index: 500; box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.15); transition: 0.3 ease; transition: 0.3s;"
 }
 
 const sidebarHeaderStyle = {
@@ -18,7 +18,7 @@ const sidebarHeaderStyle = {
 
 const toggleIconStyle = {
     closed: "position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;",
-    open: "position: absolute; top: 25px; right: 25px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;"
+    open: "position: absolute; top: 15px; right: 25px; width: 40px; height: 40px; padding: 10px; color: white; cursor: pointer; transition: 0.3s ease;"
 }
 
 function searchText(element) {
@@ -70,12 +70,13 @@ function display(info) {
     headerDiv.setAttribute('style', sidebarHeaderStyle.closed);
 
     const journalistNameElement = document.createElement('h1');
+    journalistNameElement.setAttribute('style', 'font-weight: 600; font-size:18px');
     journalistNameElement.innerText = info.name;
     headerDiv.appendChild(journalistNameElement);
     
     const journalistEmployerElement = document.createElement('h3');
     journalistEmployerElement.innerText = info.employer;
-    journalistEmployerElement.setAttribute('style', 'font-weight: 300;');
+    journalistEmployerElement.setAttribute('style', 'font-weight: 300; font-size:10px');
     headerDiv.appendChild(journalistEmployerElement);
 
     const toggleIconElement = document.createElement('img');
@@ -105,10 +106,11 @@ function display(info) {
     
     // Main Div
     const mainDiv = document.createElement("div");
-    mainDiv.setAttribute('style', "padding: 15px;");
+    mainDiv.setAttribute('style', "padding: 15px; display: flex; flex-flow:column; align-items:center");
 
     const journalistScoreDescriptionElement = document.createElement('span');
     journalistScoreDescriptionElement.innerText = 'User Rating';
+
     mainDiv.appendChild(journalistScoreDescriptionElement);
 
     const journalistScore = info.userRatings.reduce((cumulator, rating) => {
@@ -120,6 +122,17 @@ function display(info) {
     const journalistScoreElement = document.createElement('h1');
     journalistScoreElement.innerText = journalistScore;
     mainDiv.appendChild(journalistScoreElement);
+
+
+
+    const seeMoreBtn = document.createElement("a")
+    seeMoreBtn.innerText =  "See Score Breakdown"
+    seeMoreBtn.setAttribute('style', "text-align:center; color:white;background-color:#333333;width:60%;padding:15px 5px;margin-top:20px; border:none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); transition: all 0.3s cubic-bezier(.25,.8,.25,1);");
+    seeMoreBtn.href = "http://localhost:3000/rate/" + info._id
+    seeMoreBtn.target = '_blank'
+    mainDiv.appendChild(seeMoreBtn)
+   
+
 
     sideDrawerElement.appendChild(mainDiv);
 
