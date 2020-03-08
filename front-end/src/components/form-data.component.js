@@ -55,9 +55,9 @@ export default class FormDataComponent extends Component {
         localStorage.setItem('user', JSON.stringify(nextState));
     }
 
-    onSubmit(e) {
+    onSubmit=(e)=> {
         e.preventDefault()
-        console.log(this.state.props)
+        console.log(this.state)
     }
 
 
