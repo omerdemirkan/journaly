@@ -1,6 +1,7 @@
 # Journaly
 
 This is a hackathon submission for Hacktech 2020 (1st place in Facebook's "Best Project That Gives People A Voice" Prize!).
+This was also submitted for HackerHouse 2020 and won the prize for the best hack for using Google Cloud. 
 
 [Check it out on Devpost](https://devpost.com/software/journaly)
 
